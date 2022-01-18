@@ -8,7 +8,7 @@ public class NBody {
 	}
 
 	/** read the bodys */
-	public static Planet[] readBodies( String str ) {
+	public static Planet[] readPlanets( String str ) {
 		In in = new In(str);
 		int nOfBodys = in.readInt();
 		double radius = in.readDouble();
@@ -32,7 +32,7 @@ public class NBody {
 		double dt = Double.parseDouble(args[1]);
 		String filename = args[2];
 		double radius = readRadius(filename);
-		Planet[] allbodys = readBodies(filename);
+		Planet[] allbodys = readPlanets(filename);
 		int nOfBodys = allbodys.length;	/** number of plantes */
 
 
