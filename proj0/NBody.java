@@ -72,11 +72,11 @@ public class NBody {
 		}
 
 		/** print out info */
-		Stdout.printf("%d\n",allbodys.length);
-		Stdout.printf("%.2e\n",radius);
+		StdOut.printf("%d\n",allbodys.length);
+		StdOut.printf("%.2e\n",radius);
 		for (int i = 0; i < allbodys.length; i++) {
 			StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
-				allbodys[i].xxPos,allbodys[i],yyPos,
+				allbodys[i].xxPos,allbodys[i].yyPos,
 				allbodys[i].xxVel,allbodys[i].yyVel,
 				allbodys[i].mass,allbodys[i].imgFileName);
 		}

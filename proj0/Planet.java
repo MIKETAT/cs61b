@@ -1,4 +1,4 @@
-public class Body {
+public class Planet {
 
 	public double xxPos; /** Its current x position */
 	public double yyPos; /** Its current y position */
@@ -9,7 +9,7 @@ public class Body {
 	public static double G = 6.67e-11;	/** Ggravitational constant */
 
 
-	public Body(double xP, double yP, double xV,
+	public Planet(double xP, double yP, double xV,
               double yV, double m, String img) {
 		xxPos = xP;
 		yyPos = yP;
@@ -19,7 +19,7 @@ public class Body {
 		imgFileName = img;
 	}
 
-	public Body(Body b) {
+	public Planet(Planet b) {
 		xxPos = b.xxPos;
 		yyPos = b.yyPos;
 		xxVel = b.xxVel;
@@ -110,7 +110,6 @@ public class Body {
 	public void draw( ) {
 		StdDraw.picture(this.xxPos,this.yyPos,"images/"+this.imgFileName);
 		StdDraw.show();
-		//StdDraw.pause(2000);
 	}
  
 
