@@ -8,13 +8,13 @@ public class NBody {
 	}
 
 	/** read the bodys */
-	public static Body[] readBodies( String str ) {
+	public static Planet[] readBodies( String str ) {
 		In in = new In(str);
 		int nOfBodys = in.readInt();
 		double radius = in.readDouble();
 		double xxPos,yyPos,xxVel,yyVel,mass;
 		String imgFileName;
-		Body[] allbodys = new Body[nOfBodys];
+		Planet[] allbodys = new Body[nOfBodys];
 		for(int i=0;i<nOfBodys;i++){
 			xxPos = in.readDouble();
 			yyPos = in.readDouble();
@@ -32,7 +32,7 @@ public class NBody {
 		double dt = Double.parseDouble(args[1]);
 		String filename = args[2];
 		double radius = readRadius(filename);
-		Body[] allbodys = readBodies(filename);
+		Planet[] allbodys = readBodies(filename);
 		int nOfBodys = allbodys.length;	/** number of plantes */
 
 
@@ -46,7 +46,7 @@ public class NBody {
 		StdDraw.show();
 
 		/** Drawing bodies */
-		for( Body b : allbodys) {
+		for( Planet b : allbodys) {
 			b.draw();
 		}
 

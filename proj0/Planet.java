@@ -29,7 +29,7 @@ public class Planet {
 	}
 
 	/** calc the distance between two bodies */
-	public double calcDistance( Body b) {
+	public double calcDistance( Planet b) {
 		double r2,distance;
 		r2 = Math.pow(this.xxPos - b.xxPos,2) + Math.pow(this.yyPos - b.yyPos,2);
 		distance = Math.sqrt(r2);
@@ -37,7 +37,7 @@ public class Planet {
 	}
 
 	/** returns a double describing the force exerted on this body by the given body. */
-	public double calcForceExertedBy( Body b) {
+	public double calcForceExertedBy( Planet b) {
 		double force;
 		force = this.mass * b.mass * G;
 		force = force / (Math.pow(this.calcDistance(b),2));
@@ -45,7 +45,7 @@ public class Planet {
 	}
 	
 	/** calcForceExertedByX */
-	public double calcForceExertedByX( Body b) {
+	public double calcForceExertedByX( Planet b) {
 		double force = calcForceExertedBy(b);
 		double dx = b.xxPos - this.xxPos;
 		double r = this.calcDistance(b);
@@ -54,7 +54,7 @@ public class Planet {
 	}
 
 	/** calcForceExertedByY */
-	public double calcForceExertedByY( Body b) {
+	public double calcForceExertedByY( Planet b) {
 		double force = calcForceExertedBy(b);
 		double dy = b.yyPos - this.yyPos;
 		double r = this.calcDistance(b);
@@ -63,10 +63,10 @@ public class Planet {
 	}
 
 	/** calcNetForceExertedByX */
-	public double calcNetForceExertedByX( Body[] allbodys) {
+	public double calcNetForceExertedByX( Planet[] allbodys) {
 		double NetForceX = 0;
 		double forceX;
-		for (Body b : allbodys ) {
+		for (Planet b : allbodys ) {
 			if(!this.equals(b)) {
 			/** Bodys cannot exert gravitational forces on themselves! */
 				forceX = this.calcForceExertedByX(b);
@@ -76,7 +76,7 @@ public class Planet {
 		return NetForceX;
 	}
 
-	public double calcNetForceExertedByY( Body[] allbodys) {
+	public double calcNetForceExertedByY( Planet[] allbodys) {
 		double NetForceY = 0;
 		double forceY;
 		for ( Body b : allbodys) {
