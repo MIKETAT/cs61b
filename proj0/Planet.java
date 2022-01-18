@@ -79,7 +79,7 @@ public class Planet {
 	public double calcNetForceExertedByY( Planet[] allbodys) {
 		double NetForceY = 0;
 		double forceY;
-		for ( Body b : allbodys) {
+		for ( Planet b : allbodys) {
 			if(!this.equals(b)) {
 				forceY = this.calcForceExertedByY(b);
 				NetForceY = NetForceY +forceY;

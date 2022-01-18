@@ -14,7 +14,7 @@ public class NBody {
 		double radius = in.readDouble();
 		double xxPos,yyPos,xxVel,yyVel,mass;
 		String imgFileName;
-		Planet[] allbodys = new Body[nOfBodys];
+		Planet[] allbodys = new Planet[nOfBodys];
 		for(int i=0;i<nOfBodys;i++){
 			xxPos = in.readDouble();
 			yyPos = in.readDouble();
@@ -22,7 +22,7 @@ public class NBody {
 			yyVel = in.readDouble();
 			mass = in.readDouble();
 			imgFileName = in.readString();
-			allbodys[i] = new Body(xxPos,yyPos,xxVel,yyVel,mass,imgFileName);
+			allbodys[i] = new Planet(xxPos,yyPos,xxVel,yyVel,mass,imgFileName);
 		}
 		return allbodys;
 	}
