@@ -14,8 +14,6 @@ public class LinkedListDeque<T> {
             next = null;
             prev = null;
         }
-
-
     }
 
     /* member of LinkedListDeque */
@@ -69,7 +67,7 @@ public class LinkedListDeque<T> {
         }
         T items = sentinel.next.item;
         sentinel.next = sentinel.next.next;
-        sentinel.next.prev = sentinel.next.prev.prev;
+        sentinel.next.prev = sentinel;
         size -= 1;
         return items;
     }
@@ -78,9 +76,9 @@ public class LinkedListDeque<T> {
         if(size == 0) {
             return null;
         }
-        T items = sentinel.next.prev.item;
-        sentinel.next.prev = sentinel.next.prev.prev;
-        sentinel.next.prev.prev.next = sentinel.next;
+        T items = sentinel.prev.item;
+        sentinel.prev.prev.next = sentinel;
+        sentinel.prev = sentinel.prev.prev;
         size -= 1;
         return items;
     }
@@ -130,10 +128,8 @@ public class LinkedListDeque<T> {
         //recursion
         return helpGetRecursive(p.next,index - 1 );
     }
-
     public T getRecursive(int index) {
         TNode p = sentinel.next;
         return helpGetRecursive(p,index);
     }
-
 }
