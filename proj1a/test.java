@@ -1,9 +1,10 @@
 public class test {
 	public static void main(String[] args) {
 		ArrayDeque<Integer> ld = new ArrayDeque<>();
-		ld.addLast(0);
-		ld.addLast(1);
-        ld.addLast(2);
+		for(int i = 0; i < 10; i ++) {
+			ld.addLast(i);
+		}
+		System.out.print(ld.get(0));
 		ld.removeLast();
 		ld.printDeque();
 		//System.out.print(ld.sentinel.next.item);

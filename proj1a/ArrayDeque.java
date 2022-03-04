@@ -17,6 +17,7 @@ public class ArrayDeque<T> {
             T[] newArray = (T []) new Object[length * REFACTOR];
             System.arraycopy(array,0,newArray,0,length);
             length = length * REFACTOR;
+            array = newArray;
         }
         /* shrink */
         else {
@@ -33,24 +34,31 @@ public class ArrayDeque<T> {
             nextFirst = 0;
             nextLast = size + 1;
             length = length / REFACTOR;
+            array = newArray;
         }
     }
 
     public void addFirst(T item) {
-        if(size == length) {
+        if(size + 1 == length) {
             resize(true);
         }
         array[nextFirst] = item;
+        if((nextFirst - 1 + length) % length == nextLast) {
+            resize(true);
+        }
         nextFirst = (nextFirst - 1 + length) % length;
         size += 1;
     }
 
     public void addLast(T item) {
-        if(size == length) {
+        if(size + 1 == length) {
             resize(true);
         }
         array[nextLast] = item;
         nextLast = (nextLast + 1) % length;
+        if((nextLast + 1) % length == nextFirst) {
+            resize(true);
+        }
         size += 1;
     }
 
