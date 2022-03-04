@@ -75,7 +75,7 @@ public class ArrayDeque<T> {
 
     public void printDeque() {
         int index = (nextFirst + 1) % length;
-        while((index + 1) % length != nextLast) {
+        while(index != nextLast) {
             System.out.print(array[index]);
             index = (index + 1) % length;
         }
