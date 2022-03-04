@@ -101,6 +101,7 @@ public class ArrayDeque<T> {
 
     public ArrayDeque() {
         size = 0;
+        length = 8;     //default
         nextFirst = 0;
         nextLast = 1;
     }

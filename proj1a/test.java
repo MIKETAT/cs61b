@@ -1,6 +1,6 @@
 public class test {
 	public static void main(String[] args) {
-		LinkedListDeque<Integer> ld = new LinkedListDeque<>();
+		ArrayDeque<Integer> ld = new ArrayDeque<>();
 		ld.addLast(0);
 		ld.addLast(1);
         ld.addLast(2);
