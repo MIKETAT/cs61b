@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
     /* 结点类的定义 */ 
-    public class TNode {
+    private class TNode {
         T item;
         TNode next;
         TNode prev;
@@ -40,7 +40,7 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty() {
-        if(size == 0) {
+        if (size == 0) {
             return true;
         }
         return false;
@@ -53,7 +53,7 @@ public class LinkedListDeque<T> {
     public void printDeque() {
         TNode p = sentinel.next;
         int index = 0;
-        while(index < size) {
+        while (index < size) {
             System.out.print(p.item);
             p = p.next;
             index += 1;
@@ -62,7 +62,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
-        if(size == 0) {
+        if (size == 0) {
             return null;
         }
         T items = sentinel.next.item;
@@ -73,7 +73,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
-        if(size == 0) {
+        if (size == 0) {
             return null;
         }
         T items = sentinel.prev.item;
@@ -86,11 +86,11 @@ public class LinkedListDeque<T> {
     public T get(int index) {
         int k = 0;
         TNode p = sentinel.next;
-        while(k < index && k < size) {
+        while (k < index && k < size) {
             p = p.next;
             k += 1;
         }
-        if(k != index) {
+        if (k != index) {
             return null;
         }
         return p.item;
@@ -103,26 +103,12 @@ public class LinkedListDeque<T> {
         sentinel.prev = sentinel;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        size = other.size;
-        T items;
-        TNode p = other.sentinel;
-        sentinel = new TNode(p.item);
-        p = p.next;
-        int index = 0;
-        while(index < size) {
-            this.addFirst(p.item);
-            p = p.next;
-            index += 1;
-        }
-    }
-
     // helper function
-    public T helpGetRecursive(TNode p, int index) {
-        if(index >= size) {
+    private T helpGetRecursive(TNode p, int index) {
+        if (index >= size) {
             return null;
         }
-        if(index == 0) {
+        if (index == 0) {
             return p.item;
         }
         //recursion
