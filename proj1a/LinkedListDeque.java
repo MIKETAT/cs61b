@@ -112,10 +112,10 @@ public class LinkedListDeque<T> {
             return p.item;
         }
         //recursion
-        return helpGetRecursive(p.next,index - 1 );
+        return helpGetRecursive(p.next, index - 1);
     }
     public T getRecursive(int index) {
         TNode p = sentinel.next;
-        return helpGetRecursive(p,index);
+        return helpGetRecursive(p, index);
     }
 }
