@@ -15,14 +15,13 @@ public class ArrayDeque<T> {
     public void resize(boolean flag) {
         if(flag == true) {
             T[] newArray = (T []) new Object[length * REFACTOR];
-            int index = nextFirst + 1;
+            int index = (nextFirst + 1) % length;
             int newArrayIndex = 0;
             while(index != nextLast) {
                 newArray[newArrayIndex] = array[index];
                 index = (index + 1) % length;
                 newArrayIndex += 1;
             }
-            //System.arraycopy(array,0,newArray,0,length);
             length = length * REFACTOR;
             nextFirst = length - 1;
             nextLast = newArrayIndex;
@@ -31,18 +30,14 @@ public class ArrayDeque<T> {
         /* shrink */
         else {
             T[] newArray = (T []) new Object[length / REFACTOR];
-            if(nextFirst < nextLast) {
-                System.arraycopy(array,nextFirst + 1,newArray,1,size);
-            }else {
-                int index = (nextFirst + 1) % length;
-                for(int i = 1;i <= size; i++) {
-                    newArray[i] = array[index];
-                    index = (index + 1) % length;
-                }
+            int index = (nextFirst + 1) % length;
+            for(int i = 0;i < size; i++) {
+                newArray[i] = array[index];
+                index = (index + 1) % length;
             }
-            nextFirst = 0;
-            nextLast = size + 1;
             length = length / REFACTOR;
+            nextFirst = length - 1;
+            nextLast = size;
             array = newArray;
         }
     }
@@ -93,6 +88,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
+        if(size == 0) {
+            return null;
+        }
         T items = array[(nextFirst + 1) % length];
         nextFirst = (nextFirst + 1) % length;
         size -= 1;
@@ -103,6 +101,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        if(size == 0) {
+            return null;
+        }
         T items = array[(nextLast - 1 + length) % length];
         nextLast = (nextLast - 1 + length) % length;
         size -= 1;
@@ -113,6 +114,10 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
+        if(index >= size) {
+            return null;
+        }
+
         T items = array[(nextFirst + 1 + index) % length];
         return items;
     }
