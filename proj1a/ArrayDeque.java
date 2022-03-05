@@ -17,7 +17,7 @@ public class ArrayDeque<T> {
             T[] newArray = (T []) new Object[length * REFACTOR];
             int index = nextFirst + 1;
             int newArrayIndex = 0;
-            while(index != (nextLast - 1 + length) % length) {
+            while(index != nextLast) {
                 newArray[newArrayIndex] = array[index];
                 index = (index + 1) % length;
                 newArrayIndex += 1;
@@ -25,7 +25,7 @@ public class ArrayDeque<T> {
             //System.arraycopy(array,0,newArray,0,length);
             length = length * REFACTOR;
             nextFirst = length - 1;
-            nextLast = newArrayIndex + 1;
+            nextLast = newArrayIndex;
             array = newArray;
         }
         /* shrink */
