@@ -15,8 +15,17 @@ public class ArrayDeque<T> {
     public void resize(boolean flag) {
         if(flag == true) {
             T[] newArray = (T []) new Object[length * REFACTOR];
-            System.arraycopy(array,0,newArray,0,length);
+            int index = nextFirst + 1;
+            int newArrayIndex = 0;
+            while(index != (nextLast - 1 + length) % length) {
+                newArray[newArrayIndex] = array[index];
+                index = (index + 1) % length;
+                newArrayIndex += 1;
+            }
+            //System.arraycopy(array,0,newArray,0,length);
             length = length * REFACTOR;
+            nextFirst = length - 1;
+            nextLast = newArrayIndex + 1;
             array = newArray;
         }
         /* shrink */
@@ -43,10 +52,11 @@ public class ArrayDeque<T> {
             resize(true);
         }
         array[nextFirst] = item;
-        if((nextFirst - 1 + length) % length == nextLast) {
+        nextFirst = (nextFirst - 1 + length) % length;
+        if(nextFirst == nextLast) {
             resize(true);
         }
-        nextFirst = (nextFirst - 1 + length) % length;
+
         size += 1;
     }
 
@@ -86,17 +96,17 @@ public class ArrayDeque<T> {
         T items = array[(nextFirst + 1) % length];
         nextFirst = (nextFirst + 1) % length;
         size -= 1;
-        if(size >= 16 && size < length / 4) {
+        if(length >= 16 && size < length / 4) {
             resize(false);
         }
         return items;
     }
 
     public T removeLast() {
-        T items = array[(nextLast - 1) % length];
-        nextLast = (nextLast - 1) % length;
+        T items = array[(nextLast - 1 + length) % length];
+        nextLast = (nextLast - 1 + length) % length;
         size -= 1;
-        if(size >= 16 && size < length / 4) {
+        if(length >= 16 && size < length / 4) {
             resize(false);
         }
         return items;
